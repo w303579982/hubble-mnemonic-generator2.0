@@ -1,0 +1,1260 @@
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈勃未来 · 比特币助记词生成</title>
+
+
+<style type="text/css">@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:JetBrains Mono;font-style:normal;font-weight:500;src:url(/cf-fonts/v/jetbrains-mono/5.0.18/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}</style>
+<style>
+:root {
+  --primary: #1a56db;
+  --primary-dark: #1e429f;
+  --primary-light: #e1effe;
+  --secondary: #4f46e5;
+  --accent: #7e3af2;
+  --warning: #ff5a1f;
+  --warning-light: #fdba8c;
+  --success: #0e9f6e;
+  --dark: #1a1c23;
+  --medium-dark: #4a5568;
+  --medium: #707275;
+  --light: #e5e7eb;
+  --lighter: #f4f5f7;
+  --white: #ffffff;
+  --radius: 0.5rem;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #f6f8fc 0%, #e9f1f9 100%);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+header {
+  margin: 3rem 1rem;
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 {
+  margin: 0;
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+header p {
+  margin: 0.75rem 0;
+  color: var(--medium);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+main {
+  width: 92%;
+  max-width: 650px;
+  background: var(--white);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius);
+  position: relative;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.warning {
+  background-color: rgba(255, 90, 31, 0.1);
+  border-left: 4px solid var(--warning);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.warning-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.warning-content {
+  flex: 1;
+}
+
+.warning-content strong {
+  display: block;
+  color: var(--warning);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.warning-text {
+  line-height: 1.5;
+}
+
+.warning:hover {
+  background-color: rgba(255, 90, 31, 0.15);
+  transform: translateX(3px);
+}
+
+.warning strong {
+  display: block;
+  color: var(--warning);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.file-input {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--lighter);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.file-input:hover {
+  background: #edf2f7;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--medium-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--light);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#sha256-display {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--medium);
+  background: rgba(0,0,0,0.03);
+  border-radius: 0.25rem;
+  word-break: break-all;
+}
+
+.options {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.options label {
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+}
+
+button {
+  background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+button:hover::after {
+  opacity: 1;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  background: var(--medium);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+#btn-generate {
+  background: linear-gradient(to bottom, var(--accent), #6c2bd9);
+  padding: 0.85rem 2rem;
+  font-size: 1.05rem;
+  margin: 1rem 0;
+  width: 100%;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px -1px rgba(126, 58, 242, 0.3), 0 2px 4px -1px rgba(126, 58, 242, 0.2);
+}
+
+.mnemonic {
+  margin-top: 2rem;
+  word-break: break-word;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  min-height: 5rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+#mnemonic span {
+  display: inline-block;
+  padding: 0.15rem 0.3rem;
+  margin: 0.15rem;
+  background-color: var(--primary-light);
+  border-radius: 3px;
+  color: var(--primary-dark);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#mnemonic span:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.mnemonic:not(:empty) {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+#btn-copy {
+  background: linear-gradient(to bottom, var(--success), #057a55);
+}
+
+#btn-clear {
+  background: linear-gradient(to bottom, var(--medium-dark), #2d3748);
+}
+
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--medium);
+  text-align: center;
+  width: 100%;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  header p {
+    font-size: 1rem;
+  }
+  
+  main {
+    padding: 1.5rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .actions button {
+    width: 100%;
+  }
+}
+</style>
+<style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-dialog {
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border-radius: 12px;
+  width: 350px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 25% auto !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .immersive-translate-modal-content {
+    width: 80vw !important;
+    margin: 20vh auto !important;
+    padding: 20px 12px 12px !important;
+  }
+
+  .immersive-translate-modal-title {
+    font-size: 14px !important;
+  }
+
+  .immersive-translate-modal-body {
+    font-size: 13px !important;
+    max-height: 60vh !important;
+  }
+
+  .immersive-translate-btn {
+    font-size: 13px !important;
+    padding: 8px 16px !important;
+    margin: 0 4px !important;
+  }
+
+  .immersive-translate-modal-footer {
+    gap: 6px !important;
+    margin-top: 16px !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  margin-top: 24px;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 14px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-link-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+
+.imt-primary-button {
+  display: flex;
+  padding: 12px 80px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: #ea4c89;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.imt-retry-text {
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+.imt-action-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.imt-modal-content-text {
+  text-align: left;
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.imt-linear-gradient-text {
+  background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.imt-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imt-linear-black-btn {
+  border-radius: 50px;
+  background: linear-gradient(66deg, #222 19%, #696969 94.25%);
+  height: 48px;
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+}
+</style></head>
+<body>
+<header>
+<h1>哈勃未来 · 比特币助记词生成</h1>
+<p>完全离线 · 强烈建议断网使用 · 开源可信</p>
+</header>
+<main>
+<div class="warning">
+  <div class="warning-icon">⚠️</div>
+  <div class="warning-content">
+    <strong>安全提示</strong>
+    <div class="warning-text">请在离线环境中使用本页面。默认加载本目录 english.txt 并显示 SHA256 校验值，建议自行验证。上传文件可覆盖默认词表。</div>
+  </div>
+</div>
+
+<div class="file-input">
+<label for="wordlist">上传 BIP39 英文词表 (english.txt) :</label>
+<input type="file" id="wordlist" accept=".txt">
+<div id="sha256-display">SHA256: 187db04a869dd9bc7be80d21a86497d692c0db6abd3aa8cb6be5d618ff757fae (默认加载)</div>
+</div>
+
+<div class="options">
+<label>助记词长度：</label>
+<button id="btn-12">12 词</button>
+<button id="btn-24">24 词</button>
+</div>
+
+<button id="btn-generate">生成助记词</button>
+<div class="mnemonic" id="mnemonic"></div>
+
+<div class="actions">
+<button id="btn-copy" disabled="">复制助记词</button>
+<button id="btn-clear">清除</button>
+<button id="btn-download" class="loading" data-text="下载源码 (HTML)">处理中...</button>
+</div>
+</main>
+
+<footer>
+源码开源 · 请自行验证本项目 <br>
+部署 &amp; 安全由你掌控 · 强烈建议保存助记词后断网关闭本页面
+</footer>
+
+<style>
+/* 添加动画和交互效果 */
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 10px;
+  margin-top: -10px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {transform: rotate(360deg);}
+}
+
+.mnemonic.generating {
+  position: relative;
+}
+
+.mnemonic.generating::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  border: 3px solid rgba(66, 153, 225, 0.2);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.mnemonic.cleared {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {transform: translate3d(-1px, 0, 0);}
+  20%, 80% {transform: translate3d(2px, 0, 0);}
+  30%, 50%, 70% {transform: translate3d(-4px, 0, 0);}
+  40%, 60% {transform: translate3d(4px, 0, 0);}
+}
+
+body.loaded main,
+body.loaded header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#sha256-display {
+  transition: color 0.3s ease;
+}
+
+.file-input:focus-within {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+input[type="file"]:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* 助记词显示区域增强 */
+.mnemonic:not(:empty) {
+  background: linear-gradient(to right, #f0f9ff, #e6f6ff);
+}
+
+/* 按钮悬停效果增强 */
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+</style>
+
+<script type="text/javascript">
+(async()=>{
+const shaDisplay=document.getElementById("sha256-display");
+const btnGenerate=document.getElementById("btn-generate");
+const mnemonicDiv=document.getElementById("mnemonic");
+const btnCopy=document.getElementById("btn-copy");
+const btnClear=document.getElementById("btn-clear");
+const btnDownload=document.getElementById("btn-download");
+const btn12=document.getElementById("btn-12");
+const btn24=document.getElementById("btn-24");
+let wordCount=12;
+btn12.disabled=true;
+
+// 添加按钮点击波纹效果
+const addRippleEffect = (button) => {
+  button.addEventListener('click', function(e) {
+    if (this.disabled) return;
+    
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    this.appendChild(ripple);
+    
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+    ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+    
+    ripple.classList.add('active');
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+};
+
+// 为所有按钮添加波纹效果
+document.querySelectorAll('button').forEach(addRippleEffect);
+
+// 添加加载动画
+function showLoading(element) {
+  element.classList.add('loading');
+  element.setAttribute('data-text', element.textContent);
+  element.textContent = '处理中...';
+}
+
+function hideLoading(element) {
+  if (element.classList.contains('loading')) {
+    element.textContent = element.getAttribute('data-text');
+    element.classList.remove('loading');
+  }
+}
+
+btn12.addEventListener("click",()=>{
+  wordCount=12; 
+  btn12.disabled=true; 
+  btn24.disabled=false;
+});
+
+btn24.addEventListener("click",()=>{
+  wordCount=24; 
+  btn12.disabled=false; 
+  btn24.disabled=true;
+});
+
+const WORDLIST=[];
+async function sha256(buf){
+  const hash=await crypto.subtle.digest("SHA-256", buf);
+  const hashArray=new Uint8Array(hash);
+  return Array.from(hashArray).map(b=>b.toString(16).padStart(2,"0")).join(""); // 64字符
+}
+
+function bytesToBits(bytes){const bits=[];for(let b of bytes){for(let i=7;i>=0;i--) bits.push((b>>i)&1);}return bits;}
+function bitsToInt(bits){return bits.reduce((acc,b)=>(acc<<1)|b,0);}
+async function entropyToMnemonic(entropy,wordlist){
+  const ENT=entropy.length*8;
+  const checksumLen=ENT/32;
+  const hash=new Uint8Array(await crypto.subtle.digest("SHA-256", entropy));
+  const bits=bytesToBits(entropy).concat(bytesToBits(hash).slice(0,checksumLen));
+  const chunks=[];
+  for(let i=0;i<bits.length/11;i++){chunks.push(wordlist[bitsToInt(bits.slice(i*11,(i+1)*11))]);}
+  return chunks.join(" ");
+}
+function generateEntropy(bytes){const arr=new Uint8Array(bytes); crypto.getRandomValues(arr); return arr;}
+
+// 自动加载 english.txt
+try{
+  const resp=await fetch("english.txt");
+  if(!resp.ok)throw new Error("无法加载 english.txt");
+  const buf=await resp.arrayBuffer();
+  const text=new TextDecoder().decode(buf);
+  const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(l=>l);
+  if(lines.length!==2048)throw new Error("english.txt 行数不为 2048");
+  WORDLIST.push(...lines);
+  const hashHex=await sha256(buf);
+  shaDisplay.textContent="SHA256: "+hashHex+" (默认加载)";
+  btnGenerate.disabled=false;
+  btn12.disabled=false;
+}catch(e){
+  shaDisplay.textContent="默认 english.txt 加载失败，请手动上传";
+  console.error(e);
+}
+
+document.getElementById("wordlist").addEventListener("change",async e=>{
+  const file=e.target.files[0];
+  if(!file)return;
+  
+  showLoading(shaDisplay);
+  
+  const buf=await file.arrayBuffer();
+  const text=new TextDecoder().decode(buf);
+  const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(l=>l);
+  if(lines.length!==2048){
+    hideLoading(shaDisplay);
+    shaDisplay.textContent = "词表行数不是 2048";
+    shaDisplay.style.color = "#e53e3e";
+    setTimeout(() => {
+      shaDisplay.style.color = "";
+    }, 3000);
+    return;
+  }
+  WORDLIST.splice(0,WORDLIST.length,...lines);
+  const hashHex=await sha256(buf);
+  hideLoading(shaDisplay);
+  shaDisplay.textContent="SHA256: "+hashHex+" (已手动上传)";
+  btnGenerate.disabled=false;
+  btn12.disabled=false;
+});
+
+btnGenerate.addEventListener("click",async()=>{
+  if(WORDLIST.length!==2048){alert("请先加载词表");return;}
+  
+  showLoading(btnGenerate);
+  mnemonicDiv.textContent = "";
+  mnemonicDiv.classList.add('generating');
+  
+  // 添加一点延迟以显示动画效果
+  await new Promise(resolve => setTimeout(resolve, 300));
+  
+  const entropyBytes=wordCount===12?16:32;
+  const entropy=generateEntropy(entropyBytes);
+  const mnemonic=await entropyToMnemonic(entropy,WORDLIST);
+  
+  hideLoading(btnGenerate);
+  mnemonicDiv.classList.remove('generating');
+  
+  // 逐个单词显示动画
+  const words = mnemonic.split(' ');
+  mnemonicDiv.textContent = '';
+  
+  for (let i = 0; i < words.length; i++) {
+    const wordSpan = document.createElement('span');
+    wordSpan.textContent = words[i];
+    wordSpan.style.opacity = '0';
+    wordSpan.style.transform = 'translateY(10px)';
+    wordSpan.style.transition = `all 0.2s ease ${i * 50}ms`;
+    
+    if (i < words.length - 1) {
+      const space = document.createTextNode(' ');
+      mnemonicDiv.appendChild(wordSpan);
+      mnemonicDiv.appendChild(space);
+    } else {
+      mnemonicDiv.appendChild(wordSpan);
+    }
+    
+    // 触发重排以应用动画
+    setTimeout(() => {
+      wordSpan.style.opacity = '1';
+      wordSpan.style.transform = 'translateY(0)';
+    }, 10);
+  }
+  
+  btnCopy.disabled=false;
+});
+
+btnCopy.addEventListener("click",()=>{
+  const text=mnemonicDiv.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const originalText = btnCopy.textContent;
+    btnCopy.textContent = "✓ 已复制";
+    
+    setTimeout(() => {
+      btnCopy.textContent = originalText;
+    }, 2000);
+  });
+});
+
+btnClear.addEventListener("click",()=>{
+  mnemonicDiv.textContent=""; 
+  btnCopy.disabled=true;
+  
+  // 添加清除动画
+  mnemonicDiv.classList.add('cleared');
+  setTimeout(() => {
+    mnemonicDiv.classList.remove('cleared');
+  }, 500);
+});
+
+btnDownload.addEventListener("click",()=>{
+  showLoading(btnDownload);
+  
+  setTimeout(() => {
+    const html=document.documentElement.outerHTML;
+    const blob=new Blob([html],{type:"text/html"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    a.download="hubble-mnemonic-generator.html";
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    hideLoading(btnDownload);
+    
+    const originalText = btnDownload.textContent;
+    btnDownload.textContent = "✓ 已下载";
+    
+    setTimeout(() => {
+      btnDownload.textContent = originalText;
+    }, 2000);
+  }, 300);
+});
+
+// 添加页面加载完成动画
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('loaded');
+});
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'998a4c1b0e91ebe3',t:'MTc2MjE1NjM5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;ebdc081c0e3b46c0a2eb3d7e4086249e&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+</body><div id="immersive-translate-popup" style="all: initial"></div><div id="qk-ext-root" class="wSsllC9wCXlJ1wygj1YQ"></div></html>
