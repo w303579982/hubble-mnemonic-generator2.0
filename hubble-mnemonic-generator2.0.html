@@ -1750,7 +1750,6 @@ const btcAddressInput=document.getElementById("btc-address");
 const btnCopyAddress=document.getElementById("btn-copy-address");
 let wordCount=12;
 btn12.disabled=true;
-let currentMnemonic=""; // 存储当前助记词
 
 // 添加按钮点击波纹效果
 const addRippleEffect = (button) => {
@@ -3031,8 +3030,6 @@ btnGenerate.addEventListener("click",async()=>{
     
     // 清零熵（安全措施）
     entropy.fill(0);
-    
-    currentMnemonic = mnemonic; // 保存助记词
   
     hideLoading(btnGenerate);
     mnemonicDiv.classList.remove('generating');
@@ -3088,7 +3085,6 @@ btnGenerate.addEventListener("click",async()=>{
 
 btnClear.addEventListener("click",()=>{
   mnemonicDiv.textContent=""; 
-  currentMnemonic = "";
   btcAddressInput.value = "";
   addressSection.style.display = 'none';
   
